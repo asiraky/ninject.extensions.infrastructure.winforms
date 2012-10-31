@@ -24,11 +24,6 @@ namespace Ninject.Extensions.Infrastructure.WinForms
             return new ApplicationStarter(new IocContainer()).BootStrap(assemblies);
         }
 
-        public static IBootStrappedSyntax BootStrapAssembliesContaining<T>()
-        {
-            return new ApplicationStarter(new IocContainer()).BootStrap<T>();
-        }
-
         public IBootStrappedSyntax FireBeforeEvent(Action @event)
         {
             @event();
@@ -68,12 +63,6 @@ namespace Ninject.Extensions.Infrastructure.WinForms
         private IBootStrappedSyntax BootStrap(params string[] assemblies)
         {
             iocContainer.WireDependenciesInAssemblies(assemblies);
-            return this;
-        }
-
-        private IBootStrappedSyntax BootStrap<T>()
-        {
-            iocContainer.WireDependenciesInAssemblyContaining<T>();
             return this;
         }
     }
